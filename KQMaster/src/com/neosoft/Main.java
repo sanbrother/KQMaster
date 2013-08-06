@@ -10,12 +10,16 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class Main {
 
     public static void main(String[] args) {
         DefaultHttpClient httpclient = new DefaultHttpClient();
-        HttpGet httpget = new HttpGet("http://www.baidu.com/");
+        HttpGet httpget = new HttpGet("http://localhost/");
 
         try {
             HttpResponse response = httpclient.execute(httpget);
@@ -32,8 +36,21 @@ public class Main {
             }
 
             String htmlContent = EntityUtils.toString(entity);
-            System.out.println("HTML Contents:");
-            System.out.println(htmlContent);
+            // System.out.println("HTML Contents:");
+            // System.out.println(htmlContent);
+            
+            Document doc = Jsoup.parse(htmlContent);
+            
+            Element loginForm = doc.getElementsByTag("form").first();
+            // select "<input ... />"
+            loginForm.select("input");
+            
+            // Elements newsHeadlines = doc.select("#LoginForm");
+            // System.out.println(newsHeadlines);
+            System.out.println(loginForm.select("input"));
+            
+            // Elements newsHeadlines = doc.select("LoginForm");
+            // System.out.println(newsHeadlines);
 
             System.out.println("Initial set of cookies:");
             List<Cookie> cookies = httpclient.getCookieStore().getCookies();
