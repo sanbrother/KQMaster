@@ -47,7 +47,18 @@ public class Main {
             
             // Elements newsHeadlines = doc.select("#LoginForm");
             // System.out.println(newsHeadlines);
-            System.out.println(loginForm.select("input"));
+            // System.out.println(loginForm.select("input"));
+            
+            for (Element e : loginForm.select("input")) {
+                // System.out.println(e.attributes());
+                if (e.attributes().hasKey("id") && e.attr("id").equals("loginButton")) {
+                    continue;
+                } else if (e.attributes().hasKey("name") && e.attributes().hasKey("value")) {
+                    System.out.println(e.attr("name") + " --- " + e.attr("value"));
+                } else if (e.attributes().hasKey("name")) {
+                    System.out.println(e.attr("name"));
+                }
+            }
             
             // Elements newsHeadlines = doc.select("LoginForm");
             // System.out.println(newsHeadlines);
