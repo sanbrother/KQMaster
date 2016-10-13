@@ -5,11 +5,6 @@ import org.apache.commons.codec.binary.StringUtils;
 
 public class Base64Codec {
 	
-	public static final void main(String[] args) {
-		System.out.println(encrypt("gaodw") + "&" + encrypt("JUly3715@"));
-		System.out.println();
-	}
-	
 	public static String decrypt(String s) {
 		String s1 = "";
 		String s2 = "";

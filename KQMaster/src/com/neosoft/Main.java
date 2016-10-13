@@ -35,13 +35,13 @@ public class Main {
 		
 		if (passwdSuffix != null && passwdSuffix.trim().length() > 0)
 		{
-			ret = KQManager.checkAndLogin(workingPath, "gaodw", "JUly3715" + passwdSuffix);
+			ret = KQManager.checkAndLogin(workingPath, IConfig.USER_NAME, IConfig.PASSWD_PREFIX + passwdSuffix);
 		}
 		
 		if (!ret)
 		{
 			for (String suffix : passwdSuffixArray) {
-				ret = KQManager.checkAndLogin(workingPath, "gaodw", "JUly3715" + suffix);
+				ret = KQManager.checkAndLogin(workingPath, IConfig.USER_NAME, IConfig.PASSWD_PREFIX + suffix);
 				
 				if (ret)
 				{
